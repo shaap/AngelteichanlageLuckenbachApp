@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.shaap.angelteichanlage.de.NewsreaderActivity"
+            android:name=".news.NewsreaderActivity"
             android:label="@string/newsbutton_text"
             android:parentActivityName="com.shaap.angelteichanlage.de.MainActivity" >
             <meta-data
@@ -28,9 +28,9 @@
                 android:value="com.shaap.angelteichanlage.de.MainActivity" />
         </activity>
         <activity
-            android:name="com.shaap.angelteichanlage.de.ShowNewsActivity"
+            android:name=".news.ShowNewsActivity"
             android:label="@string/title_activity_show_news"
-            android:parentActivityName="com.shaap.angelteichanlage.de.NewsreaderActivity" >
+            android:parentActivityName=".news.NewsreaderActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="NewsreaderActivity" />

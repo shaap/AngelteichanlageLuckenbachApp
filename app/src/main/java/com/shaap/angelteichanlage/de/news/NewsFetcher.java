@@ -1,21 +1,12 @@
-package com.shaap.angelteichanlage.de;
+package com.shaap.angelteichanlage.de.news;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
-import android.os.StrictMode;
 import android.util.JsonReader;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.StatusLine;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import com.shaap.angelteichanlage.de.JsonParser;
+import com.shaap.angelteichanlage.de.db.DatabaseHelper;
 
 import static android.os.StrictMode.*;
 
@@ -41,7 +32,6 @@ public class NewsFetcher {
             database.beginTransaction();
             JsonReader reader = JsonParser.getJSONFromUrl(NEWS_URL);
             reader.beginArray();
-            database.delete("News","",null);
             while(reader.hasNext()) {
                 reader.beginObject();
                 ContentValues cv = new ContentValues();
@@ -51,12 +41,14 @@ public class NewsFetcher {
                     if (name.equals("title")) {
                         cv.put("title",reader.nextString());
                     } else if (name.equals("description")) {
-                            cv.put("description",reader.nextString());
+                            cv.put("description", reader.nextString());
+                    } else if (name.equals("id")) {
+                            cv.put("id",reader.nextString());
                     } else {
                         reader.skipValue();
                     }
                 }
-                database.insert("News", null, cv);
+                database.insertWithOnConflict("News", null, cv, SQLiteDatabase.CONFLICT_IGNORE);
                 reader.endObject();
             }
             reader.endArray();
@@ -70,3 +62,4 @@ public class NewsFetcher {
 
     }
 }
+

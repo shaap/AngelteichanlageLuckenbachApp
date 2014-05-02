@@ -1,10 +1,12 @@
-package com.shaap.angelteichanlage.de;
+package com.shaap.angelteichanlage.de.news;
 
 import android.app.*;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.shaap.angelteichanlage.de.R;
 
 public class ShowNewsActivity extends Activity {
 

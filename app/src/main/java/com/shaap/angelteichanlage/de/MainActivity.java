@@ -8,6 +8,9 @@ import android.view.View;
 import android.content.*;
 import android.widget.*;
 
+import com.shaap.angelteichanlage.de.news.NewsFetcher;
+import com.shaap.angelteichanlage.de.news.NewsreaderActivity;
+
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

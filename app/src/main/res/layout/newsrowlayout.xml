@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:onClick="onClick">
+
+    <TextView
+        android:id="@+id/newslabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20px"
+        android:focusable="false">
+    </TextView>
+    <TextView
+        android:id="@+id/newssublabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="10px"
+        android:singleLine="true"
+        android:layout_below="@id/newslabel"
+        android:focusable="false">
+    </TextView>
+
+</RelativeLayout>
