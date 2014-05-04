@@ -1,6 +1,7 @@
 package com.shaap.angelteichanlage.de.news;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -30,7 +31,11 @@ public class NewsArrayAdapter extends ArrayAdapter<NewsItem> {
         View rowView = inflater.inflate(R.layout.newsrowlayout, parent, false);
         TextView textView = (TextView) rowView.findViewById(R.id.newslabel);
         textView.setText(values[position].getTitle());
-        if (!values[position].getIsRead()) textView.setTypeface(null,Typeface.BOLD);
+        if (!values[position].getIsRead()) {
+            textView.setTypeface(null,Typeface.BOLD);
+            rowView.setBackgroundColor(Color.argb(50,128,128,128));
+            //rowView.setAlpha(0.8f);
+        }
         TextView textView2 = (TextView) rowView.findViewById(R.id.newssublabel);
         textView2.setText(Html.fromHtml(values[position].getDescription()));
         return rowView;

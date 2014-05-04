@@ -7,32 +7,28 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.app.*;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.shaap.angelteichanlage.de.R;
-import com.shaap.angelteichanlage.de.db.DatabaseHelper;
-import com.shaap.angelteichanlage.de.news.NewsItem;
 
 import java.util.List;
 
 public class NewsreaderActivity extends ListActivity {
 
     private NewsArrayAdapter nia;
-
+    private NewsDatabase ndb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsreader);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        ndb = new NewsDatabase(this);
         showNews();
     }
 
     private void showNews() {
-        List<NewsItem> ni;
-        DatabaseHelper dbh = new DatabaseHelper(this);
-        ni = dbh.getAllNews();
-        nia = new NewsArrayAdapter(this,ni.toArray(new NewsItem[0]));
+
+        nia = new NewsArrayAdapter(this,ndb.getAll().toArray(new NewsItem[0]));
         this.setListAdapter(nia);
 
     }
@@ -61,13 +57,21 @@ public class NewsreaderActivity extends ListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        DatabaseHelper dh = new DatabaseHelper(this);
         int newsid = nia.getItem(position).get_id();
-        dh.setNewsRead(newsid,true);
+        ndb.setNewsRead(newsid,true);
         Intent intent = new Intent(this, ShowNewsActivity.class);
         intent.putExtra("id",newsid);
         startActivity(intent);
         //do something here using the position in the array
+    }
+    @Override
+    public void onResume()
+    {
+        if (nia != null) {
+            showNews();
+        }
+
+        super.onResume();
     }
 
 }

@@ -1,31 +1,35 @@
-package com.shaap.angelteichanlage.de.news;
+package com.shaap.angelteichanlage.de.gallery;
 
-import android.app.*;
-import android.content.Intent;
+import android.app.Activity;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fedorvlasov.lazylist.ImageLoader;
 import com.shaap.angelteichanlage.de.R;
-import com.shaap.angelteichanlage.de.db.DatabaseHelper;
 
-public class ShowNewsActivity extends Activity {
 
+public class PhotoActivity extends Activity {
+
+    public ImageLoader imageLoader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_news);
+        setContentView(R.layout.activity_photo);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        int newsID = getIntent().getIntExtra("id", -1);
-        if (newsID != -1) {
-            NewsDatabase dh = new NewsDatabase(this);
-            NewsItem ni = dh.getItem(newsID);
-            this.setTitle(ni.getTitle());
-            WebView wv = (WebView) findViewById(R.id.webview);
-            wv.loadData(ni.getDescription(),"text/html; charset=UTF-8", null);
+        imageLoader=new ImageLoader(this.getApplicationContext());
+        int photoID = getIntent().getIntExtra("id", -1);
+        if (photoID != -1) {
+            GalleryDatabase dh = new GalleryDatabase(this);
+            GalleryItem gi = dh.getItem(photoID);
+            ImageView imageview = (ImageView) findViewById(R.id.imageView);
+            TextView textview = (TextView) findViewById(R.id.textView);
+            imageLoader.DisplayImage(gi.getURL(), imageview);
+            textview.setText(gi.getText());
             dh.close();
         }
     }
@@ -33,9 +37,8 @@ public class ShowNewsActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.show_news, menu);
+        getMenuInflater().inflate(R.menu.photo, menu);
         return true;
     }
 
@@ -47,11 +50,7 @@ public class ShowNewsActivity extends Activity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
-        } else if (id == R.id.home) {
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
