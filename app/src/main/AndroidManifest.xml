@@ -60,6 +60,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.shaap.angelteichanlage.de.MainActivity" />
         </activity>
+        <activity
+            android:name="com.shaap.angelteichanlage.de.events.EventDetailsActivity"
+            android:label="@string/title_activity_event_details"
+            android:parentActivityName="com.shaap.angelteichanlage.de.EventsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="EventsActivity" />
+        </activity>
     </application>
 
 </manifest>

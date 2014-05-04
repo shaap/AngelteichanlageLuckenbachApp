@@ -31,6 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase database) {
         database.execSQL("create table News( id integer primary key,title text not null,description text not null,read integer not null);");
         database.execSQL("create table Gallery( id integer primary key,url text not null, timestamp integer not null, caption text not null);");
+        database.execSQL("create table Events( id integer primary key,name text not null, description text not null, start text not null, end text not null, icon text not null);");
     }
 
     // Method is called during an upgrade of the database,
@@ -42,6 +43,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         + newVersion + ", which will destroy all old data");
         database.execSQL("DROP TABLE IF EXISTS News");
         database.execSQL("DROP TABLE IF EXISTS Gallery");
+        database.execSQL("DROP TABLE IF EXISTS Events");
         onCreate(database);
     }
 

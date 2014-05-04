@@ -9,5 +9,6 @@
     <string name="title_activity_gallery">Gallery</string>
     <string name="title_activity_photo">Photo</string>
     <string name="title_activity_events">Events</string>
+    <string name="title_activity_event_details">Details</string>
 
 </resources>
