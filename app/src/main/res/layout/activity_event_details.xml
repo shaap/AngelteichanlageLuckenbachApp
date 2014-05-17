@@ -1,16 +1,66 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.shaap.angelteichanlage.de.events.EventDetailsActivity">
+    tools:context="com.shaap.angelteichanlage.de.events.EventDetailsActivity"
+    android:orientation="vertical"
+    >
+    <ImageView
+        android:layout_width="fill_parent"
+            android:layout_height="0dp"
+        android:layout_weight="50"
+        android:id="@+id/imageView"
+        android:layout_column="1"
+        android:layout_span="2"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="false" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:textSize="20dp"
+        android:id="@+id/textView2"
+        android:layout_column="2"
+        android:paddingLeft="20dp"
+        android:gravity="center"
+        android:singleLine="true"/>
+
 
     <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:textSize="20dp"
+        android:id="@+id/textView4"
+        android:layout_column="2"
+        android:paddingLeft="20dp"
+        android:gravity="center"
+        android:singleLine="true"/>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        android:scrollbars="horizontal"
+        >
+        <WebView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="New Text"
+            android:textSize="20dp"
+            android:id="@+id/textView6"
+            android:layout_column="2"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:gravity="fill"
+            android:ellipsize="none"
+            android:scrollHorizontally="false"
+            android:singleLine="false"/>
+    </ScrollView>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Zum Kalender"
+            android:onClick="onClickAddCal"
+/>
 
-</RelativeLayout>
+</LinearLayout>

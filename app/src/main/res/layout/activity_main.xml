@@ -27,4 +27,12 @@
         android:id="@+id/button2"
         android:layout_gravity="center_horizontal"
         android:onClick="onClickGallery" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Events"
+        android:id="@+id/button3"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onClickEvents" />
 </LinearLayout>

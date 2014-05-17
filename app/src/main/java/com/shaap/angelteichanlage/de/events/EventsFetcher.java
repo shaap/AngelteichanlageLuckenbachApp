@@ -30,6 +30,7 @@ public class EventsFetcher {
 
         try {
             database.beginTransaction();
+            database.delete("Events",null,null);
             JsonReader reader = JsonParser.getJSONFromUrl(EVENTS_URL);
             reader.beginArray();
             while(reader.hasNext()) {
@@ -53,7 +54,7 @@ public class EventsFetcher {
                         reader.skipValue();
                     }
                 }
-                database.insertWithOnConflict("Events", null, cv, SQLiteDatabase.CONFLICT_IGNORE);
+                database.insert("Events", null, cv);
                 reader.endObject();
             }
             reader.endArray();

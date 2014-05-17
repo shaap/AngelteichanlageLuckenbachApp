@@ -56,7 +56,7 @@ public class EventsDatabase extends DatabaseHelper {
             cursor.moveToFirst();
 
         EventsItem data = new EventsItem(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), cursor.getString(2), ISO8601DateParser.parse(cursor.getString(3)),ISO8601DateParser.parse(cursor.getString(4)),cursor.getString(4));
+                cursor.getString(1), cursor.getString(2), ISO8601DateParser.parse(cursor.getString(3)),ISO8601DateParser.parse(cursor.getString(4)),cursor.getString(5));
         // return event
         return data;
     }
@@ -75,7 +75,7 @@ public class EventsDatabase extends DatabaseHelper {
         if (cursor.moveToFirst()) {
             do {
                 EventsItem data = new EventsItem(Integer.parseInt(cursor.getString(0)),
-                        cursor.getString(1), cursor.getString(2), ISO8601DateParser.parse(cursor.getString(3)),ISO8601DateParser.parse(cursor.getString(4)),cursor.getString(4));
+                        cursor.getString(1), cursor.getString(2), ISO8601DateParser.parse(cursor.getString(3)),ISO8601DateParser.parse(cursor.getString(4)),cursor.getString(5));
                 dataList.add(data);
             } while (cursor.moveToNext());
         }

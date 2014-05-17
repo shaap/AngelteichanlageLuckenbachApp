@@ -1,19 +1,36 @@
 package com.shaap.angelteichanlage.de.events;
 
+import android.app.ListActivity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
+
 import com.shaap.angelteichanlage.de.R;
 
-public class EventsActivity extends ActionBarActivity {
+public class EventsActivity extends ListActivity {
 
+
+    private EventsArrayAdapter ea;
+    private EventsDatabase edb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        edb = new EventsDatabase(this);
+        showEvents();
     }
 
+    private void showEvents() {
+
+        ea = new EventsArrayAdapter(this,edb.getAll().toArray(new EventsItem[0]));
+        this.setListAdapter(ea);
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -32,5 +49,14 @@ public class EventsActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        int eventid = ea.getItem(position).getId();
+        Intent intent = new Intent(this, EventDetailsActivity.class);
+        intent.putExtra("id",eventid);
+        startActivity(intent);
+        //do something here using the position in the array
     }
 }

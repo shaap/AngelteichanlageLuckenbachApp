@@ -8,6 +8,8 @@ import android.view.View;
 import android.content.*;
 import android.widget.*;
 
+import com.shaap.angelteichanlage.de.events.EventsActivity;
+import com.shaap.angelteichanlage.de.events.EventsFetcher;
 import com.shaap.angelteichanlage.de.gallery.GalleryActivity;
 import com.shaap.angelteichanlage.de.gallery.GalleryFetcher;
 import com.shaap.angelteichanlage.de.news.NewsFetcher;
@@ -30,12 +32,22 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
+    public void onClickEvents (View view) {
+        Intent intent = new Intent(this, EventsActivity.class);
+        startActivity(intent);
+    }
+
     public void doFetchNews (View view) {
         NewsFetcher nf = new NewsFetcher(this);
         GalleryFetcher gf = new GalleryFetcher(this);
+        EventsFetcher  ef = new EventsFetcher(this);
         if (nf.Fetch()) {
             if (gf.Fetch()) {
-                Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show();
+                if (ef.Fetch()) {
+                    Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this,"FAIL!",Toast.LENGTH_SHORT).show();
+                }
             } else {
                 Toast.makeText(this,"FAIL!",Toast.LENGTH_SHORT).show();
             }
