@@ -12,6 +12,7 @@ package com.shaap.angelteichanlage.de;
         import org.apache.http.client.entity.UrlEncodedFormEntity;
         import org.apache.http.client.methods.HttpGet;
         import org.apache.http.impl.client.DefaultHttpClient;
+        import org.apache.http.params.HttpParams;
         import org.json.JSONObject;
 
         import android.os.Message;
@@ -45,6 +46,9 @@ public class JsonParser {
         } catch (ClientProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
 

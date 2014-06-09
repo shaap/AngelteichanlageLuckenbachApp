@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
         android:allowBackup="true"
@@ -67,6 +68,27 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.shaap.angelteichanlage.de.events.EventsActivity" />
+        </activity>
+        <activity
+            android:name="com.shaap.proevents.Booking1Activity"
+            android:label="@string/title_activity_booking1" >
+            <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="http"
+                android:host="www.angelteichanlage.de"
+                android:pathPrefix="/booking/" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http"
+                    android:host="angelteichanlage.de"
+                    android:pathPrefix="/booking/" />
+            </intent-filter>
+
         </activity>
     </application>
 

@@ -47,7 +47,7 @@
             android:layout_height="fill_parent"
             android:text="New Text"
             android:textSize="20dp"
-            android:id="@+id/textView6"
+            android:id="@+id/webview"
             android:layout_column="2"
             android:paddingLeft="20dp"
             android:paddingTop="20dp"
